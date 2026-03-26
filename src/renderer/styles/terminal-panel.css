@@ -1,0 +1,303 @@
+/* ─── Terminal Panel ─── */
+.terminal-panel {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-base);
+  overflow: hidden;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* ─── Panel Header ─── */
+.panel-header {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  height: 28px;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 11px;
+}
+
+.panel-header .panel-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.panel-cli-badge {
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.panel-cli-badge.claude {
+  background: #f77a7b;
+  color: #242422;
+}
+
+.panel-cli-badge.codex {
+  background: #6cc9a1;
+  color: var(--bg-deep);
+}
+
+.panel-path {
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.panel-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 11px;
+  border-radius: 3px;
+  line-height: 1;
+}
+
+.panel-btn:hover {
+  color: var(--accent);
+  background: var(--bg-hover);
+}
+
+/* ─── Panel Body ─── */
+.panel-body {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  background: #30302e;
+}
+
+.panel-body .xterm {
+  height: 100%;
+  padding: 4px;
+}
+
+.panel-body .xterm-viewport {
+  background-color: #30302e !important;
+}
+
+.panel-body .xterm-screen {
+  background-color: #30302e;
+}
+
+/* ─── Setup Mode ─── */
+.panel-setup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 14px;
+  padding: 20px;
+}
+
+.setup-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.setup-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 500;
+}
+
+.setup-dir-row {
+  display: flex;
+  gap: 4px;
+}
+
+.setup-dir-input {
+  flex: 1;
+  padding: 6px 9px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-family: 'Cascadia Code', 'Consolas', monospace;
+  min-width: 0;
+}
+
+.setup-dir-input::placeholder {
+  color: var(--text-muted);
+}
+
+.setup-dir-input:focus {
+  outline: none;
+  border-color: var(--accent-dim);
+}
+
+.setup-browse-btn,
+.setup-fav-btn {
+  padding: 6px 9px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: all 0.1s ease;
+}
+
+.setup-browse-btn:hover,
+.setup-fav-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.setup-fav-btn.is-fav {
+  color: #e8a96c;
+  border-color: #e8a96c40;
+}
+
+/* ─── Favorites ─── */
+.favorites-dropdown {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  max-height: 120px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.favorites-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+
+.favorites-dropdown::-webkit-scrollbar-thumb {
+  background: var(--bg-hover);
+  border-radius: 2px;
+}
+
+.fav-item {
+  display: flex;
+  align-items: center;
+  padding: 5px 9px;
+  cursor: pointer;
+  font-size: 11px;
+  gap: 6px;
+  transition: background 0.1s ease;
+}
+
+.fav-item:hover {
+  background: var(--bg-surface);
+}
+
+.fav-item-path {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  font-family: 'Cascadia Code', 'Consolas', monospace;
+  font-size: 10px;
+}
+
+.fav-item-label {
+  color: var(--text-primary);
+  font-size: 11px;
+}
+
+.fav-remove-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 9px;
+  padding: 2px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.fav-item:hover .fav-remove-btn {
+  opacity: 1;
+}
+
+.fav-remove-btn:hover {
+  color: var(--accent);
+}
+
+/* ─── CLI Buttons ─── */
+.setup-cli-row {
+  display: flex;
+  gap: 6px;
+}
+
+.cli-btn {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.1s ease;
+}
+
+.cli-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.cli-btn.selected {
+  border-color: var(--accent-dim);
+  color: var(--text-primary);
+  background: var(--accent-glow);
+}
+
+.cli-btn.codex.selected {
+  border-color: #5bb892;
+  background: rgba(108, 201, 161, 0.1);
+}
+
+/* ─── Start Button ─── */
+.setup-start-btn {
+  padding: 8px 28px;
+  background: var(--accent);
+  color: var(--bg-deep);
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin-top: 4px;
+}
+
+.setup-start-btn:hover {
+  background: var(--accent-dim);
+}
+
+.setup-start-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.no-favs-msg {
+  color: var(--text-muted);
+  font-size: 10px;
+  text-align: center;
+  padding: 8px;
+}
