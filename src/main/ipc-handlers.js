@@ -4,9 +4,8 @@ import windowManager from './window-manager.js';
 import { getFavorites, addFavorite, removeFavorite } from './favorites-store.js';
 
 export function registerHandlers(mainWindow) {
-  ipcMain.handle('pty:create', (event, { id, cwd, cli }) => {
-    // Use mainWindow.webContents instead of event.sender for reliability
-    ptyManager.create(id, { cwd, cli }, mainWindow.webContents);
+  ipcMain.handle('pty:create', (event, { id, cwd, cli, yolo }) => {
+    ptyManager.create(id, { cwd, cli, yolo }, mainWindow.webContents);
   });
 
   ipcMain.on('pty:write', (event, { id, data }) => {

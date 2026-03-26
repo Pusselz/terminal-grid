@@ -6,7 +6,7 @@ class PtyManager {
     this.targets = new Map();
   }
 
-  create(id, { cwd, cli }, webContents) {
+  create(id, { cwd, cli, yolo }, webContents) {
     if (this.ptys.has(id)) {
       this.destroy(id);
     }
@@ -33,7 +33,12 @@ class PtyManager {
     ptyProcess.onData((data) => {
       if (!launched) {
         launched = true;
-        ptyProcess.write(`${cli}\r`);
+        let cmd = cli;
+        if (yolo) {
+          if (cli === 'claude') cmd = 'claude --dangerously-skip-permissions';
+          if (cli === 'codex') cmd = 'codex --full-auto';
+        }
+        ptyProcess.write(`${cmd}\r`);
       }
 
       const target = this.targets.get(id);

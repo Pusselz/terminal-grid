@@ -63,6 +63,31 @@ export function createTerminalPanel() {
   cliSection.appendChild(cliLabel);
   cliSection.appendChild(cliRow);
 
+  // --- YOLO Toggle ---
+  let yoloEnabled = true;
+  const yoloSection = document.createElement('div');
+  yoloSection.className = 'setup-section';
+
+  const yoloRow = document.createElement('div');
+  yoloRow.className = 'setup-yolo-row';
+
+  const yoloToggle = document.createElement('button');
+  yoloToggle.className = 'yolo-toggle active';
+  yoloToggle.innerHTML = '<span class="yolo-dot"></span><span class="yolo-text">YOLO</span>';
+  yoloToggle.title = 'Claude: --dangerously-skip-permissions\nCodex: --full-auto';
+  yoloToggle.addEventListener('click', () => {
+    yoloEnabled = !yoloEnabled;
+    yoloToggle.classList.toggle('active', yoloEnabled);
+  });
+
+  const yoloHint = document.createElement('span');
+  yoloHint.className = 'yolo-hint';
+  yoloHint.textContent = 'Skip permissions';
+
+  yoloRow.appendChild(yoloToggle);
+  yoloRow.appendChild(yoloHint);
+  yoloSection.appendChild(yoloRow);
+
   const startBtn = document.createElement('button');
   startBtn.className = 'setup-start-btn';
   startBtn.textContent = 'Starten';
@@ -75,6 +100,7 @@ export function createTerminalPanel() {
 
   setup.appendChild(dirPicker.element);
   setup.appendChild(cliSection);
+  setup.appendChild(yoloSection);
   setup.appendChild(startBtn);
 
   // --- Terminal Mode ---
@@ -186,6 +212,7 @@ export function createTerminalPanel() {
     await window.terminalAPI.createPty(panelId, {
       cwd: selectedDir,
       cli: selectedCli,
+      yolo: yoloEnabled,
     });
 
     // Resize on fit
